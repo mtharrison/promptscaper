@@ -14,7 +14,7 @@ export default function RootLayout({
         <title>PromptScaper</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Providers>{children}</Providers>
         <Analytics />
       </body>

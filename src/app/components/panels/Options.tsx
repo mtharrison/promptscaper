@@ -294,9 +294,9 @@ export function Options() {
       flex={"1 1 0"}
     >
       {!apiKey && (
-        <Alert status="error">
+        <Alert status="info">
           <AlertIcon />
-          <Text>
+          <Text fontSize={"sm"}>
             Enter your <b>OpenAI API Key</b>. This will not be stored unless you
             choose to cache in local browser storage. When saving or exporting a
             workspace your API key always will be omitted from the saved data.
