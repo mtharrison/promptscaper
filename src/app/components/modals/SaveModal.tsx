@@ -66,7 +66,7 @@ export function SaveModal() {
           <Flex alignContent={"center"} alignItems={"center"}>
             <FormControl mb={5}>
               <FormLabel>New Name</FormLabel>
-              <Input ref={initialRef} />
+              <Input id="saveName" ref={initialRef} />
             </FormControl>
             <Button
               onClick={async () => {
@@ -135,40 +135,4 @@ export function SaveModal() {
       </ModalContent>
     </Modal>
   );
-
-  // return (
-  //   <Modal
-  //     initialFocusRef={initialRef}
-  //     finalFocusRef={finalRef}
-  //     isOpen={workspace.saveModal.show}
-  //     onClose={workspaceActions.hideSaveModal}
-  //     size={"2xl"}
-  //   >
-  //     <ModalOverlay />
-  //     <ModalContent>
-  //       <ModalHeader>Save workspace</ModalHeader>
-  //       <ModalCloseButton />
-  //       <ModalBody pb={6}>
-  //         <FormControl>
-  //           <FormLabel>Name</FormLabel>
-  //           <Input ref={initialRef} />
-  //         </FormControl>
-  //       </ModalBody>
-
-  //       <ModalFooter>
-  //         <Button
-  //           onClick={() => {
-  //             initialRef.current &&
-  //               workspaceActions.save(initialRef.current.value);
-  //           }}
-  //           colorScheme="blue"
-  //           mr={3}
-  //         >
-  //           Save
-  //         </Button>
-  //         <Button onClick={workspaceActions.hideSaveModal}>Cancel</Button>
-  //       </ModalFooter>
-  //     </ModalContent>
-  //   </Modal>
-  // );
 }

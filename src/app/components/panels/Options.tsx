@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useAppStore } from "../../state";
+import { useEffect } from "react";
 
 type PasswordControl = {
   type: "password";
@@ -84,6 +85,7 @@ function ControlItem({ control }: { control: Control }) {
           {control.name}
         </Heading>
         <Select
+          id={control.name}
           size={"sm"}
           onChange={(e) => control.onChange(e.target.value)}
           placeholder="Select option"
@@ -108,6 +110,7 @@ function ControlItem({ control }: { control: Control }) {
               {control.name}
             </Heading>
             <Input
+              id={control.name}
               autoComplete="off"
               type="password"
               size={"sm"}
@@ -164,6 +167,7 @@ function ControlItem({ control }: { control: Control }) {
           {control.name}
         </Heading>
         <NumberInput
+          id={control.name}
           value={control.value}
           onChange={(e) => control.onChange(parseFloat(e))}
         >
@@ -186,6 +190,7 @@ function ControlItem({ control }: { control: Control }) {
           </Heading>
         )}
         <Textarea
+          id={control.name}
           size={"sm"}
           minH={200}
           defaultValue={"You are a helpful Assistant"}
@@ -204,6 +209,7 @@ export function Options() {
     apiKey,
     frequency_penalty,
     presence_penalty,
+    storeApiKey,
   } = useAppStore((state) => state.options.llm);
 
   const {
@@ -215,6 +221,14 @@ export function Options() {
     updatePresencePenalty,
     updateMaxTokens,
   } = useAppStore((state) => state.optionsActions);
+
+  useEffect(() => {
+    const cachedKey = sessionStorage.getItem("promptScaper-api-key");
+    console.log(cachedKey);
+    if (cachedKey) {
+      updateApiKey(cachedKey);
+    }
+  }, []);
 
   const llmControls: Control[] = [
     {

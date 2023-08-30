@@ -83,6 +83,7 @@ export function Chat() {
         >
           <FormControl>
             <Input
+              id="userMessage"
               isDisabled={completionPending || !apiKey}
               rounded={"md"}
               overflow={"hidden"}

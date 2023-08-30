@@ -1,3 +1,5 @@
+"use client";
+
 import { Application, FunctionsActions } from "@/app/types";
 import { produce } from "immer";
 

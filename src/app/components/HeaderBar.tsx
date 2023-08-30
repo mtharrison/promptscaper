@@ -31,6 +31,7 @@ import { useAppStore } from "../state";
 
 import { OpenModal } from "./modals/OpenModal";
 import { SaveModal } from "./modals/SaveModal";
+import { useEffect, useState } from "react";
 
 export function HeaderBar() {
   const { undo, redo, pastStates, futureStates } =
@@ -68,6 +69,9 @@ export function HeaderBar() {
   const canUndo = !!pastStates.length;
   const canRedo = !!futureStates.length;
 
+  const [showLogo, setShowLogo] = useState(false);
+  useEffect(() => setShowLogo(true), []);
+
   return (
     <Flex
       flexDirection={"row"}
@@ -81,14 +85,15 @@ export function HeaderBar() {
         flex={"1 1 auto"}
       >
         <Flex flex={"0 0 auto"} gap={10} alignItems={"center"}>
-          <Image
-            alt="PromptScaper"
-            style={{
-              width: 173 / 3 + "px",
-              height: 115 / 3 + "px",
-            }}
-            src={Logo}
-          />
+          {showLogo && (
+            <Image
+              id="logo"
+              alt="PromptScaper"
+              width={50}
+              height={50}
+              src={Logo.src}
+            />
+          )}
           <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
             <Button
               leftIcon={<AiOutlinePlus />}

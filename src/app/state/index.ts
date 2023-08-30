@@ -1,3 +1,5 @@
+"use client";
+
 import { create } from "zustand";
 import { temporal } from "zundo";
 import { ApplicationState, Application } from "../types";
@@ -25,15 +27,8 @@ export const initialState: ApplicationState = {
   },
   options: {
     llm: {
-      storeApiKey:
-        typeof window !== "undefined" &&
-        sessionStorage.getItem("promptscape_api_key") !== null
-          ? true
-          : false,
-      apiKey:
-        (typeof window !== "undefined" &&
-          sessionStorage.getItem("promptscape_api_key")) ||
-        "",
+      storeApiKey: false,
+      apiKey: "",
       model: "gpt-3.5-turbo",
       temperature: 0.5,
       top_p: 1,

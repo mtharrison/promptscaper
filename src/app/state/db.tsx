@@ -1,3 +1,4 @@
+"use client";
 import { SavedWorkspace } from "../types";
 
 const VERSION_NUMBER = 1;

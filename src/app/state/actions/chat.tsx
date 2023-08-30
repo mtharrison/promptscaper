@@ -1,3 +1,5 @@
+"use client";
+
 import { ChatActions, Application, ChatMessage } from "@/app/types";
 import { produce } from "immer";
 import { v4 } from "uuid";

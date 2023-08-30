@@ -1,3 +1,5 @@
+"use client";
+
 import { OptionsActions, Application } from "@/app/types";
 import { produce } from "immer";
 
@@ -15,12 +17,8 @@ export default (
     set(
       produce((state: Application) => {
         state.options.llm.apiKey = input;
-        if (
-          state.options.llm.storeApiKey &&
-          input &&
-          typeof window !== "undefined"
-        ) {
-          sessionStorage.setItem("promptscape_api_key", input);
+        if (typeof window !== "undefined" && state.options.llm.storeApiKey) {
+          window.sessionStorage.setItem("promptScaper-api-key", input);
         }
       })
     ),
@@ -66,15 +64,12 @@ export default (
         state.options.llm.storeApiKey = !state.options.llm.storeApiKey;
         if (state.options.llm.storeApiKey) {
           const apiKey = get().options.llm.apiKey;
-          if (apiKey && typeof window !== "undefined") {
-            sessionStorage.setItem(
-              "promptscape_api_key",
-              get().options.llm.apiKey
-            );
+          if (typeof window !== "undefined" && state.options.llm.storeApiKey) {
+            window.sessionStorage.setItem("promptScaper-api-key", apiKey);
           }
         } else {
           if (typeof window !== "undefined") {
-            sessionStorage.removeItem("promptscape_api_key");
+            window.sessionStorage.removeItem("promptScaper-api-key");
           }
         }
       })

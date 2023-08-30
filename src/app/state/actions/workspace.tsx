@@ -1,3 +1,5 @@
+"use client";
+
 import { Application, WorkspaceActions } from "@/app/types";
 import { produce } from "immer";
 import { v4 } from "uuid";
@@ -45,7 +47,6 @@ export default (
   save: async (name: string) => {
     get().workspaceActions.hideSaveModal();
     const s = omit(pick(get(), savedKeys), omitKeys);
-
     await save({
       id: v4(),
       state: JSON.stringify(s),
