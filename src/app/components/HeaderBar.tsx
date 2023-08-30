@@ -6,6 +6,7 @@ import {
   Button,
   IconButton,
   Tooltip,
+  Link,
   HStack,
   Text,
 } from "@chakra-ui/react";
@@ -20,6 +21,7 @@ import {
   AiFillEye,
   AiOutlineEyeInvisible,
   AiFillEyeInvisible,
+  AiFillGithub,
 } from "react-icons/ai";
 
 import Image from "next/image";
@@ -205,6 +207,18 @@ export function HeaderBar() {
           >
             Logs
           </Button> */}
+        </HStack>
+
+        <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
+          <Link href="https://github.com/mtharrison/promptscaper" isExternal>
+            <Button
+              leftIcon={<AiFillGithub />}
+              colorScheme="blackAlpha"
+              size={"sm"}
+            >
+              Contribute
+            </Button>
+          </Link>
         </HStack>
       </Flex>
 
