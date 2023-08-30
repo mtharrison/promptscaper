@@ -78,6 +78,7 @@ export function HeaderBar() {
       flexDirection={"row"}
       justifyContent={"space-between"}
       alignItems={"baseline"}
+      flex={"0 0 0"}
     >
       <Flex
         alignItems={"center"}

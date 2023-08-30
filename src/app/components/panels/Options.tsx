@@ -288,10 +288,10 @@ export function Options() {
     <Flex
       flexDirection={"column"}
       bg="white"
-      flex={"1 0 auto"}
       overflow={"scroll"}
       rounded={"lg"}
       boxShadow={"md"}
+      flex={"1 1 0"}
     >
       {!apiKey && (
         <Alert status="error">

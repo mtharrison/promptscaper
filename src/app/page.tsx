@@ -15,15 +15,13 @@ export default function Home() {
     panels: workspace.panels,
   }));
   return (
-    <Flex h={"100vh"} flexDirection={"column"} px={10} py={5} gap={3}>
+    <Flex flexDirection={"column"} h={"100%"} flexFlow={"column"} p={5} gap={3}>
       <AlertDialogComponent {...dialog} />
       <HeaderBar />
-      <Flex flex={"1 1 auto"} gap={5} overflow={"hidden"} flexDirection={"row"}>
+      <Flex flex={"1 1 0"} minH={0} gap={5}>
         <Chat />
-        <Flex flex={"1 2 auto"} flexDirection={"column"} gap={5}>
-          {panels.functions.visible && <Functions />}
-          {panels.config.visible && <Options />}
-        </Flex>
+        {panels.functions.visible && <Functions />}
+        {panels.config.visible && <Options />}
       </Flex>
     </Flex>
   );

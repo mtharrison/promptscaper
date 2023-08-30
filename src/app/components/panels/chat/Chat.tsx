@@ -33,12 +33,12 @@ export function Chat() {
   return (
     <Flex
       p={5}
-      flex={"2 0 50%"}
       flexDirection={"column"}
       rounded={"lg"}
       gap={5}
       bg={"white"}
       boxShadow={"md"}
+      flex={"1 1 0"}
     >
       <Flex flexDirection={"column"} flex={"1 1 auto"}>
         <Flex

@@ -22,11 +22,11 @@ export function Functions() {
     <Flex
       flexDirection={"column"}
       gap={1}
-      flex={"2 1 auto"}
       bg="#1E1E1E"
-      overflow={"scroll"}
       rounded={"lg"}
       boxShadow={"md"}
+      flex={"1 1 0"}
+      overflow={"hidden"}
     >
       <Flex p={5} alignItems={"baseline"} justifyContent={"space-between"}>
         <Heading fontFamily={"mono"} color="white" size="md">
