@@ -4,7 +4,7 @@ import { Application, WorkspaceActions } from "@/app/types";
 import { produce } from "immer";
 import { v4 } from "uuid";
 import { load, save, remove } from "../db";
-import { pick, omit, merge } from "lodash";
+import { pick, omit, defaultsDeep } from "lodash";
 import { initialState } from "..";
 
 const savedKeys = ["chat", "options", "workspace", "functions"];
@@ -70,7 +70,7 @@ export default (
     const item = await load(id);
     //@ts-ignore
     const savedState = JSON.parse(item.state) as Partial<Application>;
-    set((state) => merge(savedState, state));
+    set((state) => defaultsDeep(savedState, state));
   },
   remove: async (id: string) => {
     await remove(id);
