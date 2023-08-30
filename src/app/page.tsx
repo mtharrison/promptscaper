@@ -21,8 +21,8 @@ export default function Home() {
       <Flex flex={"1 1 auto"} gap={5} overflow={"hidden"} flexDirection={"row"}>
         <Chat />
         <Flex flex={"1 2 auto"} flexDirection={"column"} gap={5}>
-          {panels.config.visible && <Options />}
           {panels.functions.visible && <Functions />}
+          {panels.config.visible && <Options />}
         </Flex>
       </Flex>
     </Flex>

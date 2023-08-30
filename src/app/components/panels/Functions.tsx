@@ -21,8 +21,8 @@ export function Functions() {
   return (
     <Flex
       flexDirection={"column"}
-      gap={5}
-      flex={"1 1 0"}
+      gap={1}
+      flex={"2 1 auto"}
       bg="#1E1E1E"
       overflow={"scroll"}
       rounded={"lg"}
@@ -43,10 +43,10 @@ export function Functions() {
       <Editor
         defaultLanguage="json"
         options={{
-          lineNumbers: "on",
+          lineNumbers: "off",
           formatOnPaste: true,
           formatOnType: true,
-          fontSize: 16,
+          fontSize: 14,
           tabSize: 2,
           scrollBeyondLastLine: false,
           wrappingStrategy: "simple",

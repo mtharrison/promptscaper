@@ -2,11 +2,11 @@ import { Application, WorkspaceActions } from "@/app/types";
 import { produce } from "immer";
 import { v4 } from "uuid";
 import { load, save, remove } from "../db";
-import { pick, omit } from "lodash";
+import { pick, omit, merge } from "lodash";
 import { initialState } from "..";
 
 const savedKeys = ["chat", "options", "workspace", "functions"];
-const omitKeys = ["options.llm.apiKey"];
+const omitKeys = ["options.llm.apiKey", "options.llm.storeApiKey"];
 
 export default (
   set: (
@@ -69,7 +69,7 @@ export default (
     const item = await load(id);
     //@ts-ignore
     const savedState = JSON.parse(item.state) as Partial<Application>;
-    set((state) => ({ ...state, ...savedState }));
+    set((state) => merge(savedState, state));
   },
   remove: async (id: string) => {
     await remove(id);

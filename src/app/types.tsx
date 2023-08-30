@@ -39,6 +39,7 @@ export interface WorkspaceState {
 
 export interface OptionsState {
   llm: {
+    storeApiKey: boolean;
     apiKey: string;
     model: string;
     temperature: number;
@@ -69,6 +70,7 @@ export interface ChatActions {
 }
 
 export interface OptionsActions {
+  toggleStoreApiKey: () => void;
   updateApiKey: (input: string) => void;
   updateModel: (input: string) => void;
   updateTemperature: (input: number) => void;

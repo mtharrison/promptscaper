@@ -15,6 +15,9 @@ export default (
     set(
       produce((state: Application) => {
         state.options.llm.apiKey = input;
+        if (state.options.llm.storeApiKey && input) {
+          sessionStorage.setItem("promptscape_api_key", input);
+        }
       })
     ),
   updateModel: (input: string) =>
@@ -51,6 +54,23 @@ export default (
     set(
       produce((state: Application) => {
         state.options.llm.max_tokens = input;
+      })
+    ),
+  toggleStoreApiKey: () =>
+    set(
+      produce((state: Application) => {
+        state.options.llm.storeApiKey = !state.options.llm.storeApiKey;
+        if (state.options.llm.storeApiKey) {
+          const apiKey = get().options.llm.apiKey;
+          if (apiKey) {
+            sessionStorage.setItem(
+              "promptscape_api_key",
+              get().options.llm.apiKey
+            );
+          }
+        } else {
+          sessionStorage.removeItem("promptscape_api_key");
+        }
       })
     ),
 });

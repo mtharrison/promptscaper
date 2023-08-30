@@ -93,13 +93,13 @@ export function HeaderBar() {
             <Button
               leftIcon={<AiOutlinePlus />}
               onClick={newWorkspace}
-              size={"md"}
+              size={"sm"}
               colorScheme="blackAlpha"
             >
               New
             </Button>
             <Button
-              size={"md"}
+              size={"sm"}
               leftIcon={<AiOutlineFolderOpen />}
               onClick={showOpenModal}
               colorScheme="blackAlpha"
@@ -109,7 +109,7 @@ export function HeaderBar() {
 
             <Button
               leftIcon={<AiOutlineSave />}
-              size={"md"}
+              size={"sm"}
               onClick={showSaveModal}
               colorScheme="blackAlpha"
             >
@@ -119,7 +119,7 @@ export function HeaderBar() {
               <IconButton
                 isDisabled={!canUndo}
                 onClick={() => undo(1)}
-                size={"md"}
+                size={"sm"}
                 icon={<BiUndo />}
                 aria-label="Undo"
                 colorScheme="blackAlpha"
@@ -129,7 +129,7 @@ export function HeaderBar() {
               <IconButton
                 isDisabled={!canRedo}
                 onClick={() => redo(1)}
-                size={"md"}
+                size={"sm"}
                 icon={<BiRedo />}
                 aria-label="Redo"
                 colorScheme="blackAlpha"
@@ -145,7 +145,7 @@ export function HeaderBar() {
               aria-label="Export current workspace to JSON"
             >
               <Button
-                size={"md"}
+                size={"sm"}
                 leftIcon={<BiExport />}
                 colorScheme="blackAlpha"
                 onClick={exportWorkspace}
@@ -158,7 +158,7 @@ export function HeaderBar() {
               aria-label="Import workspace from JSON"
             >
               <Button
-                size={"md"}
+                size={"sm"}
                 leftIcon={<BiImport />}
                 colorScheme="blackAlpha"
                 onClick={importWorkspace}
@@ -174,7 +174,7 @@ export function HeaderBar() {
             leftIcon={functionsVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
             onClick={toggleFunctionsPanelVisibility}
             colorScheme="blackAlpha"
-            size={"md"}
+            size={"sm"}
           >
             Functions editor
           </Button>
@@ -183,7 +183,7 @@ export function HeaderBar() {
             leftIcon={configVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
             onClick={toggleConfigPanelVisibility}
             colorScheme="blackAlpha"
-            size={"md"}
+            size={"sm"}
           >
             LLM Config
           </Button>
@@ -192,7 +192,7 @@ export function HeaderBar() {
             leftIcon={logsVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
             onClick={toggleLogsPanelVisibility}
             colorScheme="blackAlpha"
-            size={"md"}
+            size={"sm"}
           >
             Logs
           </Button> */}

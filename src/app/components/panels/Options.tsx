@@ -3,6 +3,7 @@
 import {
   Heading,
   Text,
+  Checkbox,
   Box,
   Flex,
   Select,
@@ -71,6 +72,11 @@ type Control =
   | PasswordControl;
 
 function ControlItem({ control }: { control: Control }) {
+  const storeApiKey = useAppStore((state) => state.options.llm.storeApiKey);
+  const toggleStoreApiKey = useAppStore(
+    (state) => state.optionsActions.toggleStoreApiKey
+  );
+
   if (control.type === "select") {
     return (
       <Box flex="1 0 calc(50% - 10px)">
@@ -78,6 +84,7 @@ function ControlItem({ control }: { control: Control }) {
           {control.name}
         </Heading>
         <Select
+          size={"sm"}
           onChange={(e) => control.onChange(e.target.value)}
           placeholder="Select option"
           value={control.value}
@@ -95,15 +102,31 @@ function ControlItem({ control }: { control: Control }) {
   if (control.type === "password") {
     return (
       <Box flex="1 0 calc(50% - 10px)">
-        <Heading size="xs" mb={2} textTransform="uppercase">
-          {control.name}
-        </Heading>
-        <Input
-          type="password"
-          isInvalid={control.value === ""}
-          onChange={(e) => control.onChange(e.target.value)}
-          value={control.value}
-        />
+        <Flex gap={4}>
+          <Box flex={"2 0 0"}>
+            <Heading size="xs" mb={2} textTransform="uppercase">
+              {control.name}
+            </Heading>
+            <Input
+              autoComplete="off"
+              type="password"
+              size={"sm"}
+              isInvalid={control.value === ""}
+              onChange={(e) => control.onChange(e.target.value)}
+              value={control.value}
+            />
+          </Box>
+          <Box flex={"1 1 0"}>
+            <Heading size="xs" mb={2} textTransform="uppercase">
+              Cache locally?
+            </Heading>
+            <Checkbox
+              size={"sm"}
+              isChecked={storeApiKey}
+              onChange={toggleStoreApiKey}
+            />
+          </Box>
+        </Flex>
       </Box>
     );
   }
@@ -163,6 +186,7 @@ function ControlItem({ control }: { control: Control }) {
           </Heading>
         )}
         <Textarea
+          size={"sm"}
           minH={200}
           defaultValue={"You are a helpful Assistant"}
         ></Textarea>
@@ -250,21 +274,25 @@ export function Options() {
     <Flex
       flexDirection={"column"}
       bg="white"
+      flex={"1 0 auto"}
       overflow={"scroll"}
       rounded={"lg"}
       boxShadow={"md"}
     >
       {!apiKey && (
-        <Alert status="warning">
+        <Alert status="error">
           <AlertIcon />
-          Enter your OpenAI API Key. This will never be stored in saved or
-          exported workspaces.
+          <Text>
+            Enter your <b>OpenAI API Key</b>. This will not be stored unless you
+            choose to cache in local browser storage. When saving or exporting a
+            workspace your API key always will be omitted from the saved data.
+          </Text>
         </Alert>
       )}
       <Flex p={5} alignItems={"baseline"} justifyContent={"space-between"}>
         <Heading size="md">LLM Config</Heading>
       </Flex>
-      <Flex p={5} gap={5} flexWrap={"wrap"}>
+      <Flex p={5} gap={3} flexWrap={"wrap"}>
         {llmControls.map((c, i) => (
           <ControlItem key={i} control={c} />
         ))}
