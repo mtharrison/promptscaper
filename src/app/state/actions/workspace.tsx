@@ -135,6 +135,9 @@ export default (
       })
     ),
   exportWorkspace: () => {
+    if (typeof document === "undefined") {
+      return;
+    }
     const filename = `prompscaper-${Date.now()}.json`;
     const s = omit(pick(get(), savedKeys), omitKeys);
     const json = JSON.stringify(s);
