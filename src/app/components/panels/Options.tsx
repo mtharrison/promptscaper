@@ -291,7 +291,7 @@ export function Options() {
       rounded={"lg"}
       overflow={"hidden"}
       boxShadow={"md"}
-      flex={"4 1 auto"}
+      flex={"0 1 auto"}
       minW={"400px"}
     >
       {!apiKey && (

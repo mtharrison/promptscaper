@@ -15,7 +15,14 @@ export default function Home() {
     panels: workspace.panels,
   }));
   return (
-    <Flex flexDirection={"column"} h={"100%"} flexFlow={"column"} p={5} gap={3}>
+    <Flex
+      flexDirection={"column"}
+      h={"100vh"}
+      maxH={"100vh"}
+      flexFlow={"column"}
+      p={5}
+      gap={3}
+    >
       <AlertDialogComponent {...dialog} />
       <HeaderBar />
       <Flex flex={"1 1 0"} minH={0} gap={5} flexWrap={"wrap"}>

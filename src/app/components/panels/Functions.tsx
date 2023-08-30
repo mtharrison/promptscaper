@@ -25,7 +25,7 @@ export function Functions() {
       bg="#1E1E1E"
       rounded={"lg"}
       boxShadow={"md"}
-      flex={"5 1 auto"}
+      flex={"1 1 0"}
       overflow={"hidden"}
       minW={"400px"}
     >
@@ -51,6 +51,8 @@ export function Functions() {
           tabSize: 2,
           scrollBeyondLastLine: false,
           wrappingStrategy: "simple",
+          wordWrap: "on",
+
           minimap: {
             enabled: false,
           },

@@ -181,13 +181,25 @@ export function HeaderBar() {
         </Flex>
 
         <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
+          <Link href="https://github.com/mtharrison/promptscaper" isExternal>
+            <Button
+              leftIcon={<AiFillGithub />}
+              colorScheme="blackAlpha"
+              size={"sm"}
+            >
+              Contribute
+            </Button>
+          </Link>
+        </HStack>
+
+        <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
           <Button
             leftIcon={functionsVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
             onClick={toggleFunctionsPanelVisibility}
             colorScheme="blackAlpha"
             size={"sm"}
           >
-            Functions editor
+            Toggle Functions
           </Button>
 
           <Button
@@ -196,7 +208,7 @@ export function HeaderBar() {
             colorScheme="blackAlpha"
             size={"sm"}
           >
-            LLM Config
+            Toggle Options
           </Button>
 
           {/* <Button
@@ -207,18 +219,6 @@ export function HeaderBar() {
           >
             Logs
           </Button> */}
-        </HStack>
-
-        <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
-          <Link href="https://github.com/mtharrison/promptscaper" isExternal>
-            <Button
-              leftIcon={<AiFillGithub />}
-              colorScheme="blackAlpha"
-              size={"sm"}
-            >
-              Contribute
-            </Button>
-          </Link>
         </HStack>
       </Flex>
 
