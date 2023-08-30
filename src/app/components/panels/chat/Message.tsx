@@ -25,11 +25,8 @@ import {
   AiOutlineRobot,
   AiOutlineLaptop,
   AiOutlineCode,
-  AiFillCode,
-  AiOutlineBackward,
-  AiOutlineDelete,
-  AiFillDelete,
 } from "react-icons/ai";
+import { RiDeleteBack2Fill } from "react-icons/ri";
 import { TiDelete } from "react-icons/ti";
 import { useAppStore } from "../../../state";
 import { ChatMessage } from "../../../types";
@@ -172,6 +169,7 @@ export function Message({
           <Textarea
             bg={"white"}
             ref={textareaRef}
+            id={`input-textarea-index-${index}`}
             onBlur={finishEditing}
             height={"max-content"}
             onChange={(e) => setEditedText(e.target.value)}
@@ -207,6 +205,7 @@ export function Message({
                 <Textarea
                   mt={5}
                   placeholder="enter return value"
+                  id={`return-textarea-index-${index}`}
                   value={returnValue}
                   onChange={(e) => setReturnValue(e.target.value)}
                 ></Textarea>
@@ -248,7 +247,18 @@ export function Message({
         rounded={"lg"}
         boxShadow={"sm"}
       >
-        {/* <Tooltip
+        <Tooltip label="Delete message" aria-label="Delete message">
+          <IconButton
+            colorScheme="red"
+            id={`delete-message-index-${index}`}
+            size={"sm"}
+            icon={<TiDelete />}
+            aria-label="Delete message"
+            onClick={() => deleteMessage(message.id)}
+          />
+        </Tooltip>
+
+        <Tooltip
           label="Delete all messages after this"
           aria-label="Delete all messages after this"
         >
@@ -259,15 +269,6 @@ export function Message({
             aria-label="xxx"
             size={"sm"}
             onClick={() => rewindToMessage(message.id)}
-          />
-        </Tooltip> */}
-        <Tooltip label="Delete message" aria-label="Delete message">
-          <IconButton
-            colorScheme="red"
-            size={"sm"}
-            icon={<TiDelete />}
-            aria-label="Delete message"
-            onClick={() => deleteMessage(message.id)}
           />
         </Tooltip>
       </Flex>
