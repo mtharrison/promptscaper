@@ -15,7 +15,11 @@ export default (
     set(
       produce((state: Application) => {
         state.options.llm.apiKey = input;
-        if (state.options.llm.storeApiKey && input) {
+        if (
+          state.options.llm.storeApiKey &&
+          input &&
+          typeof window !== "undefined"
+        ) {
           sessionStorage.setItem("promptscape_api_key", input);
         }
       })
@@ -62,14 +66,16 @@ export default (
         state.options.llm.storeApiKey = !state.options.llm.storeApiKey;
         if (state.options.llm.storeApiKey) {
           const apiKey = get().options.llm.apiKey;
-          if (apiKey) {
+          if (apiKey && typeof window !== "undefined") {
             sessionStorage.setItem(
               "promptscape_api_key",
               get().options.llm.apiKey
             );
           }
         } else {
-          sessionStorage.removeItem("promptscape_api_key");
+          if (typeof window !== "undefined") {
+            sessionStorage.removeItem("promptscape_api_key");
+          }
         }
       })
     ),

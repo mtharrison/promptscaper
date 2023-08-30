@@ -26,8 +26,14 @@ export const initialState: ApplicationState = {
   options: {
     llm: {
       storeApiKey:
-        sessionStorage.getItem("promptscape_api_key") !== null ? true : false,
-      apiKey: sessionStorage.getItem("promptscape_api_key") ?? "",
+        typeof window !== "undefined" &&
+        sessionStorage.getItem("promptscape_api_key") !== null
+          ? true
+          : false,
+      apiKey:
+        (typeof window !== "undefined" &&
+          sessionStorage.getItem("promptscape_api_key")) ||
+        "",
       model: "gpt-3.5-turbo",
       temperature: 0.5,
       top_p: 1,
