@@ -25,8 +25,9 @@ export function Functions() {
       bg="#1E1E1E"
       rounded={"lg"}
       boxShadow={"md"}
-      flex={"1 1 0"}
+      flex={"5 1 auto"}
       overflow={"hidden"}
+      minW={"400px"}
     >
       <Flex p={5} alignItems={"baseline"} justifyContent={"space-between"}>
         <Heading fontFamily={"mono"} color="white" size="md">
@@ -37,7 +38,7 @@ export function Functions() {
           size={"sm"}
           colorScheme="orange"
         >
-          Add example function
+          Show me an example
         </Button>
       </Flex>
       <Editor

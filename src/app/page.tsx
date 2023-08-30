@@ -18,10 +18,18 @@ export default function Home() {
     <Flex flexDirection={"column"} h={"100%"} flexFlow={"column"} p={5} gap={3}>
       <AlertDialogComponent {...dialog} />
       <HeaderBar />
-      <Flex flex={"1 1 0"} minH={0} gap={5}>
+      <Flex flex={"1 1 0"} minH={0} gap={5} flexWrap={"wrap"}>
         <Chat />
-        {panels.functions.visible && <Functions />}
-        {panels.config.visible && <Options />}
+        <Flex
+          flex={"1 1 0"}
+          minH={0}
+          minW={"400px"}
+          gap={5}
+          flexDirection={"column"}
+        >
+          {panels.functions.visible && <Functions />}
+          {panels.config.visible && <Options />}
+        </Flex>
       </Flex>
     </Flex>
   );

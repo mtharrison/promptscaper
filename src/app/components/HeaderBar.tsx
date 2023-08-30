@@ -78,6 +78,7 @@ export function HeaderBar() {
       flexDirection={"row"}
       justifyContent={"space-between"}
       alignItems={"baseline"}
+      flexWrap={"wrap"}
       flex={"0 0 0"}
     >
       <Flex
@@ -85,6 +86,7 @@ export function HeaderBar() {
         gap={5}
         justifyContent={"space-between"}
         flex={"1 1 auto"}
+        flexWrap={"wrap"}
       >
         <Flex flex={"0 0 auto"} gap={10} alignItems={"center"}>
           {showLogo && (

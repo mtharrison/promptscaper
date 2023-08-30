@@ -39,6 +39,8 @@ export function Chat() {
       bg={"white"}
       boxShadow={"md"}
       flex={"1 1 0"}
+      minW={"400px"}
+      minH={"500px"}
     >
       <Flex flexDirection={"column"} flex={"1 1 auto"}>
         <Flex

@@ -80,7 +80,7 @@ function ControlItem({ control }: { control: Control }) {
 
   if (control.type === "select") {
     return (
-      <Box flex="1 0 calc(50% - 10px)">
+      <Box flex="1 0 calc(30% - 10px)">
         <Heading size="xs" mb={2} textTransform="uppercase">
           {control.name}
         </Heading>
@@ -103,7 +103,7 @@ function ControlItem({ control }: { control: Control }) {
 
   if (control.type === "password") {
     return (
-      <Box flex="1 0 calc(50% - 10px)">
+      <Box flex="1 0 calc(30% - 10px)">
         <Flex gap={4}>
           <Box flex={"2 0 0"}>
             <Heading size="xs" mb={2} textTransform="uppercase">
@@ -136,7 +136,7 @@ function ControlItem({ control }: { control: Control }) {
 
   if (control.type === "range") {
     return (
-      <Box flex="1 0 calc(50% - 10px)">
+      <Box flex="1 0 calc(30% - 10px)">
         <Heading size="xs" mb={2} textTransform="uppercase">
           {control.name}
         </Heading>
@@ -162,7 +162,7 @@ function ControlItem({ control }: { control: Control }) {
 
   if (control.type === "number") {
     return (
-      <Box flex="1 0 calc(50% - 10px)">
+      <Box flex="1 0 calc(30% - 10px)">
         <Heading size="xs" mb={2} textTransform="uppercase">
           {control.name}
         </Heading>
@@ -183,7 +183,7 @@ function ControlItem({ control }: { control: Control }) {
 
   if (control.type === "textarea") {
     return (
-      <Box flex="1 0 calc(50% - 10px)">
+      <Box flex="1 0 calc(30% - 10px)">
         {control.title && (
           <Heading size="xs" mb={2} textTransform="uppercase">
             {control.name}
@@ -288,25 +288,22 @@ export function Options() {
     <Flex
       flexDirection={"column"}
       bg="white"
-      overflow={"scroll"}
       rounded={"lg"}
+      overflow={"hidden"}
       boxShadow={"md"}
-      flex={"1 1 0"}
+      flex={"4 1 auto"}
+      minW={"400px"}
     >
       {!apiKey && (
-        <Alert status="info">
+        <Alert status="info" minH={"max-content"}>
           <AlertIcon />
           <Text fontSize={"sm"}>
             Enter your <b>OpenAI API Key</b>. This will not be stored unless you
-            choose to cache in local browser storage. When saving or exporting a
-            workspace your API key always will be omitted from the saved data.
+            choose to cache in local browser storage
           </Text>
         </Alert>
       )}
-      <Flex p={5} alignItems={"baseline"} justifyContent={"space-between"}>
-        <Heading size="md">LLM Config</Heading>
-      </Flex>
-      <Flex p={5} gap={3} flexWrap={"wrap"}>
+      <Flex p={5} gap={4} flexWrap={"wrap"}>
         {llmControls.map((c, i) => (
           <ControlItem key={i} control={c} />
         ))}
