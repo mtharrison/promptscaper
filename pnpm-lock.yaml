@@ -100,6 +100,9 @@ dependencies:
   typescript:
     specifier: 5.1.6
     version: 5.1.6
+  userflow.js:
+    specifier: ^2.9.0
+    version: 2.9.0
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -3810,6 +3813,10 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /userflow.js@2.9.0:
+    resolution: {integrity: sha512-kly8TphapNqq+P2OwfLv6uNEs4dy6xdOLXpRXtntnohOze+lVw9MNaBo0jo1cmTGSqSpA6TLV5twkBoT/2l3hw==}
     dev: false
 
   /util-deprecate@1.0.2:

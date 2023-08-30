@@ -9,7 +9,19 @@ import { Options } from "./components/panels/Options";
 import { Flex, Text } from "@chakra-ui/react";
 import { useAppStore } from "./state";
 
+import userflow from "userflow.js";
+import { useEffect } from "react";
+
+userflow.init("ct_wfobtiv5hzhavo5h4m44qn2x5q");
+userflow.identifyAnonymous({
+  website_lead: true,
+});
+
 export default function Home() {
+  useEffect(() => {
+    userflow.start("7200cc34-31dd-40d4-abe9-a3b3a382fa85");
+  }, []);
+
   const { dialog, panels } = useAppStore(({ workspace }) => ({
     dialog: workspace.dialog,
     panels: workspace.panels,
