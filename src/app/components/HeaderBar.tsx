@@ -9,8 +9,13 @@ import {
   Link,
   HStack,
   Text,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 
+import { BiChevronDown } from "react-icons/bi";
 // Chat
 import {
   AiOutlineFolderOpen,
@@ -90,7 +95,7 @@ export function HeaderBar() {
         flex={"1 1 auto"}
         flexWrap={"wrap"}
       >
-        <Flex flex={"0 0 auto"} gap={10} alignItems={"center"}>
+        <Flex flex={"0 0 auto"} gap={3} alignItems={"center"}>
           {showLogo && (
             <Image
               id="logo"
@@ -101,31 +106,38 @@ export function HeaderBar() {
             />
           )}
           <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
-            <Button
-              leftIcon={<AiOutlinePlus />}
-              onClick={newWorkspace}
-              size={"sm"}
-              colorScheme="blackAlpha"
-            >
-              New
-            </Button>
-            <Button
-              size={"sm"}
-              leftIcon={<AiOutlineFolderOpen />}
-              onClick={showOpenModal}
-              colorScheme="blackAlpha"
-            >
-              Open
-            </Button>
-
-            <Button
-              leftIcon={<AiOutlineSave />}
-              size={"sm"}
-              onClick={showSaveModal}
-              colorScheme="blackAlpha"
-            >
-              Save
-            </Button>
+            <Menu>
+              <MenuButton
+                as={Button}
+                size={"sm"}
+                colorScheme="blackAlpha"
+                rightIcon={<BiChevronDown />}
+              >
+                Workspace
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={newWorkspace} icon={<AiOutlinePlus />}>
+                  New
+                </MenuItem>
+                <MenuItem onClick={showSaveModal} icon={<AiOutlineSave />}>
+                  Save
+                </MenuItem>
+                <MenuItem
+                  onClick={showOpenModal}
+                  icon={<AiOutlineFolderOpen />}
+                >
+                  Open
+                </MenuItem>
+                <MenuItem onClick={exportWorkspace} icon={<BiExport />}>
+                  Export
+                </MenuItem>
+                <MenuItem onClick={importWorkspace} icon={<BiImport />}>
+                  Import
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </HStack>
+          <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
             <Tooltip label="Undo" aria-label="Undo">
               <IconButton
                 isDisabled={!canUndo}
@@ -149,77 +161,39 @@ export function HeaderBar() {
           </HStack>
         </Flex>
 
-        <Flex flex={"0 0 auto"} gap={5} alignItems={"center"}>
+        <Flex gap={3}>
           <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
-            <Tooltip
-              label="Export current workspace to JSON"
-              aria-label="Export current workspace to JSON"
-            >
-              <Button
-                size={"sm"}
-                leftIcon={<BiExport />}
-                colorScheme="blackAlpha"
-                onClick={exportWorkspace}
-              >
-                Export
-              </Button>
-            </Tooltip>
-            <Tooltip
-              label="Import workspace from JSON"
-              aria-label="Import workspace from JSON"
-            >
-              <Button
-                size={"sm"}
-                leftIcon={<BiImport />}
-                colorScheme="blackAlpha"
-                onClick={importWorkspace}
-              >
-                Import
-              </Button>
-            </Tooltip>
-          </HStack>
-        </Flex>
-
-        <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
-          <Link href="https://github.com/mtharrison/promptscaper" isExternal>
             <Button
-              leftIcon={<AiFillGithub />}
+              leftIcon={
+                functionsVisible ? <AiFillEye /> : <AiFillEyeInvisible />
+              }
+              onClick={toggleFunctionsPanelVisibility}
               colorScheme="blackAlpha"
               size={"sm"}
             >
-              Contribute
+              Toggle Functions
             </Button>
-          </Link>
-        </HStack>
 
-        <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
-          <Button
-            leftIcon={functionsVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
-            onClick={toggleFunctionsPanelVisibility}
-            colorScheme="blackAlpha"
-            size={"sm"}
-          >
-            Toggle Functions
-          </Button>
-
-          <Button
-            leftIcon={configVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
-            onClick={toggleConfigPanelVisibility}
-            colorScheme="blackAlpha"
-            size={"sm"}
-          >
-            Toggle Options
-          </Button>
-
-          {/* <Button
-            leftIcon={logsVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
-            onClick={toggleLogsPanelVisibility}
-            colorScheme="blackAlpha"
-            size={"sm"}
-          >
-            Logs
-          </Button> */}
-        </HStack>
+            <Button
+              leftIcon={configVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
+              onClick={toggleConfigPanelVisibility}
+              colorScheme="blackAlpha"
+              size={"sm"}
+            >
+              Toggle Options
+            </Button>
+          </HStack>
+          <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
+            <Link href="https://github.com/mtharrison/promptscaper" isExternal>
+              <IconButton
+                aria-label="contribute"
+                icon={<AiFillGithub />}
+                colorScheme="blackAlpha"
+                size={"sm"}
+              />
+            </Link>
+          </HStack>
+        </Flex>
       </Flex>
 
       <SaveModal />
