@@ -27,15 +27,16 @@ import Logo from "../../../public/logo.png";
 
 import { BiUndo, BiRedo, BiImport, BiExport } from "react-icons/bi";
 
-import { useAppStore } from "../state";
+import { useAppStore, useTemporalStore } from "../state";
 
 import { OpenModal } from "./modals/OpenModal";
 import { SaveModal } from "./modals/SaveModal";
 import { useEffect, useState } from "react";
 
 export function HeaderBar() {
-  const { undo, redo, pastStates, futureStates } =
-    useAppStore.temporal.getState();
+  const { undo, redo, pastStates, futureStates } = useTemporalStore(
+    (state) => state
+  );
 
   const {
     newWorkspace,

@@ -1,14 +1,16 @@
 "use client";
 
-import { create } from "zustand";
-import { temporal } from "zundo";
+import { create, useStore } from "zustand";
+import { temporal, TemporalState } from "zundo";
 import { ApplicationState, Application } from "../types";
+import { isEqual, omit } from "lodash";
 import { v4 } from "uuid";
 
 import ChatActions from "./actions/chat";
 import FunctionsActions from "./actions/functions";
 import OptionsActions from "./actions/options";
 import WorkspaceActions from "./actions/workspace";
+import { current } from "immer";
 
 export const initialState: ApplicationState = {
   functions: {
@@ -68,3 +70,8 @@ export const useAppStore = create<Application>()(
     optionsActions: OptionsActions(set, get),
   }))
 );
+
+export const useTemporalStore = <T>(
+  selector: (state: TemporalState<Partial<Application>>) => T,
+  equality?: (a: T, b: T) => boolean
+) => useStore(useAppStore.temporal, selector, equality);

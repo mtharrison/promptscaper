@@ -14,15 +14,8 @@ import {
 } from "@chakra-ui/react";
 
 // Chat
-import {
-  AiOutlineSend,
-  AiFillCaretRight,
-  AiOutlineUser,
-  AiOutlineCode,
-  AiOutlinePlayCircle,
-  AiOutlinePlaySquare,
-} from "react-icons/ai";
-import { useAppStore } from "../../../state";
+import { AiOutlineSend, AiOutlinePlaySquare } from "react-icons/ai";
+import { useAppStore, useTemporalStore } from "../../../state";
 import { Message } from "./Message";
 
 export function Chat() {
@@ -33,7 +26,7 @@ export function Chat() {
   const { updateInput, sendMessage, play } = useAppStore(
     (state) => state.chatActions
   );
-  const { pause, resume } = useAppStore.temporal.getState();
+  const { pause, resume } = useTemporalStore((state) => state);
 
   const messageToSend = input.length > 0;
 
