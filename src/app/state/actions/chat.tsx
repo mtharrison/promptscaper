@@ -60,6 +60,8 @@ export default (
     const name = get().chat.messages.find(({ id }) => srcId === id)
       ?.function_call.name as string;
 
+    va.track("function_call_response_added");
+
     const newMessage: ChatMessage = {
       id: v4(),
       content: value,
