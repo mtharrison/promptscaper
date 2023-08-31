@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 import { load, save, remove } from "../db";
 import { pick, omit, defaultsDeep } from "lodash";
 import { initialState } from "..";
+import va from "@vercel/analytics";
 
 const savedKeys = ["chat", "options", "workspace", "functions"];
 const omitKeys = ["options.llm.apiKey", "options.llm.storeApiKey"];
@@ -45,6 +46,8 @@ export default (
       })
     ),
   save: async (name: string) => {
+    va.track("saved_workspace");
+
     get().workspaceActions.hideSaveModal();
     const s = omit(pick(get(), savedKeys), omitKeys);
     await save({
@@ -66,6 +69,8 @@ export default (
     });
   },
   open: async (id: string) => {
+    va.track("opened_workspace");
+
     get().workspaceActions.hideOpenModal();
     const item = await load(id);
     //@ts-ignore
@@ -138,6 +143,7 @@ export default (
     if (typeof document === "undefined") {
       return;
     }
+    va.track("exported_workspace");
     const filename = `prompscaper-${Date.now()}.json`;
     const s = omit(pick(get(), savedKeys), omitKeys);
     const json = JSON.stringify(s);
@@ -168,6 +174,8 @@ export default (
     const handle = await window.showOpenFilePicker(pickerOpts);
     const file = await handle[0].getFile();
     const reader = new FileReader();
+
+    va.track("imported_workspace");
 
     reader.addEventListener(
       "load",

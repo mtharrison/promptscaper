@@ -4,6 +4,7 @@ import { ChatActions, Application, ChatMessage } from "@/app/types";
 import { produce } from "immer";
 import { v4 } from "uuid";
 import OpenAI from "openai";
+import va from "@vercel/analytics";
 
 export default (
   set: (
@@ -115,6 +116,8 @@ export default (
       apiKey,
       dangerouslyAllowBrowser: true,
     });
+
+    va.track("chat_completion_performed");
 
     const completion = await openai.chat.completions.create({
       messages: get().chat.messages.map(
