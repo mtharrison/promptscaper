@@ -6,11 +6,12 @@ import { Chat } from "./components/panels/chat/Chat";
 import { Functions } from "./components/panels/Functions";
 import { Options } from "./components/panels/Options";
 
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 import { useAppStore } from "./state";
 
 import userflow from "userflow.js";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Home() {
       h={"100vh"}
       maxH={"100vh"}
       flexFlow={"column"}
-      p={5}
+      p={4}
       gap={3}
     >
       <AlertDialogComponent {...dialog} />
@@ -48,6 +49,17 @@ export default function Home() {
           {panels.functions.visible && <Functions />}
           {panels.config.visible && <Options />}
         </Flex>
+      </Flex>
+      <Flex bg="whiteAlpha.900" alignSelf={"flex-end"} flex={"0 1 auto"}>
+        <Link
+          href="https://theresanaiforthat.com/ai/promptscaper/?ref=featured&v=399689"
+          target="_blank"
+        >
+          <Image
+            w={200}
+            src="https://media.theresanaiforthat.com/featured3.png"
+          />
+        </Link>
       </Flex>
     </Flex>
   );
