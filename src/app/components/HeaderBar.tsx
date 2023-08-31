@@ -15,6 +15,8 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 
+import GitHubButton from "react-github-btn";
+
 import { BiChevronDown } from "react-icons/bi";
 // Chat
 import {
@@ -183,15 +185,15 @@ export function HeaderBar() {
               Toggle Options
             </Button>
           </HStack>
-          <HStack bg="blackAlpha.100" p={2} rounded={"lg"} boxShadow={"sm"}>
-            <Link href="https://github.com/mtharrison/promptscaper" isExternal>
-              <IconButton
-                aria-label="contribute"
-                icon={<AiFillGithub />}
-                colorScheme="blackAlpha"
-                size={"sm"}
-              />
-            </Link>
+          <HStack w={"max-content"}>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=mtharrison&repo=promptscaper&type=star&count=true&size=large"
+              frameBorder="0"
+              scrolling="0"
+              width="130"
+              height="30"
+              title="GitHub"
+            ></iframe>
           </HStack>
         </Flex>
       </Flex>
